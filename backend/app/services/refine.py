@@ -31,6 +31,10 @@ def review(content: GeneratedContent, product: ProductInput, language: str, leng
         keywords=product.keywords or [], language=language, length=length, channel=channel,
     )
     issues = [f"{c['label']}: {c['detail']}" for c in report["checks"] if not c["passed"]]
+    # The title keyword comes first in SEO: a draft without it is always sent back, whatever its score.
+    if any(c["id"] == "kw_title" and not c["passed"] for c in report["checks"]) and product.keywords:
+        issues.insert(0, TITLE_RULE + f'put the primary keyword "{product.keywords[0]}" in the title, near the start, '
+                                      "as part of a natural product name")
     serious = 0
     text = " ".join([content.title, content.short_description, content.long_description,
                      *content.bullet_points, content.meta_description])

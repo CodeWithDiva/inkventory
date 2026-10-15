@@ -710,3 +710,7 @@ details.advanced > summary + * { margin-top: 14px; }
 /* Photo analysis on the product page */
 .photo-analysis { border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; margin-bottom: 12px; background: rgb(255 255 255 / 55%); }
 .photo-analysis .stat-label svg { color: var(--primary); }
+
+/* Server unreachable screen */
+.server-down { min-height: 100vh; display: grid; place-items: center; padding: 24px; position: relative; }
+.server-down > .card { position: relative; z-index: 1; max-width: 520px; padding: 32px; }

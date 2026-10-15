@@ -74,3 +74,14 @@ def test_brand_in_title_is_sent_back_for_own_store_but_kept_for_marketplaces():
     assert result.content == GOOD
     review = refine.review(branded, PRODUCT, "en", "medium", "amazon")
     assert not any(i.startswith(refine.TITLE_RULE) for i in review.issues)
+
+
+def test_missing_title_keyword_is_always_sent_back_first():
+    from app.services import refine
+
+    no_keyword = content(GOOD.long_description, title="Slim Brown Bifold for Everyday Carry")
+    review = refine.review(no_keyword, PRODUCT, "en", "medium", "generic")
+    assert review.issues[0].startswith(refine.TITLE_RULE) and '"leather wallet"' in review.issues[0]
+    assert refine.needs_revision(review, min_score=0)  # even when the score alone would pass
+    provider = Scripted(no_keyword, GOOD)
+    assert _call(provider, "system", PRODUCT, "en", [], 1, 1).content == GOOD and len(provider.prompts) == 2

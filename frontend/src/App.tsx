@@ -170,13 +170,36 @@ function UserMenu({ me, onLogout }: { me: Me; onLogout: () => void }) {
   );
 }
 
+/** Shown instead of an endless spinner when the API can't be reached. */
+function ServerDown({ onRetry, retrying }: { onRetry: () => void; retrying: boolean }) {
+  return (
+    <div className="server-down">
+      <AppBackground />
+      <div className="card">
+        <Logo size={36} />
+        <h1 style={{ margin: "18px 0 6px" }}>Can't reach the Inkventory server</h1>
+        <p className="muted">
+          The website is open, but the API it talks to is not answering. If you run Inkventory on this computer,
+          make sure the <b>Inkventory API</b> window is open, or start the app again from the <b>Inkventory</b>
+          desktop shortcut.
+        </p>
+        <div className="row" style={{ marginTop: 16 }}>
+          <button className="primary" disabled={retrying} onClick={onRetry}>{retrying ? "Trying…" : "Try again"}</button>
+          <button onClick={() => { auth.set(null); window.location.href = "/login"; }}>Go to sign in</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Shell({ children }: { children: ReactNode }) {
-  const { data: me, isLoading } = useMe();
+  const { data: me, isLoading, error, refetch, isFetching } = useMe();
   const navigate = useNavigate();
   const location = useLocation();
   const queryClient = useQueryClient();
 
   if (!auth.token) return <Navigate to="/login" replace />;
+  if (error && !me) return <ServerDown onRetry={() => refetch()} retrying={isFetching} />;
   if (isLoading || !me) return <Loading />;
 
   const logout = async () => {
