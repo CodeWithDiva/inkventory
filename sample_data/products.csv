@@ -1,0 +1,11 @@
+Product ID,Title,Category,Brand,Price,Color,Material,Size,Keywords
+SKU-1001,Classic Leather Wallet,Accessories,Urban Craft,29.99,Brown,Genuine leather,Standard,"leather wallet, mens wallet, bifold wallet"
+SKU-1002,Stainless Steel Water Bottle 750ml,Kitchen,HydroPeak,24.50,Silver,Stainless steel,750 ml,"steel water bottle, insulated bottle, reusable bottle"
+SKU-1003,Wireless Bluetooth Earbuds,Electronics,SoundWave,59.00,Black,Plastic,One size,"wireless earbuds, bluetooth earbuds, noise cancelling earbuds"
+SKU-1004,Cotton Crew Neck T-Shirt,Clothing,BasicWear,15.00,White,100% cotton,M,"cotton t-shirt, crew neck tee, white t-shirt"
+SKU-1005,Ceramic Coffee Mug 350ml,Kitchen,MorningCo,12.99,Blue,Ceramic,350 ml,"ceramic mug, coffee mug, tea cup"
+SKU-1006,Yoga Mat Non-Slip 6mm,Sports,FlexFit,34.99,Purple,TPE foam,183 x 61 cm,"yoga mat, non slip yoga mat, exercise mat"
+SKU-1007,LED Desk Lamp with USB Port,Home Office,BrightDesk,39.90,White,Aluminium,Adjustable,"led desk lamp, study lamp, desk light"
+SKU-1008,Kids Waterproof Backpack,Bags,TinyTrek,27.00,Red,Polyester,15 L,"kids backpack, school bag, waterproof backpack"
+,Missing SKU Row,Misc,NoBrand,1.00,,,,
+SKU-1001,Duplicate SKU Row,Accessories,Urban Craft,29.99,,,,

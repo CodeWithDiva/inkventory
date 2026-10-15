@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="vJbase" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/><stop offset=".55" stop-color="#5b3fe0"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="vJgold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#eef0ff"/><stop offset="1" stop-color="#c7d2fe"/>
+    </linearGradient>
+    <linearGradient id="vJrim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c7d2fe" stop-opacity=".9"/><stop offset=".5" stop-color="#4338ca" stop-opacity=".4"/><stop offset="1" stop-color="#ddd6fe" stop-opacity=".8"/>
+    </linearGradient>
+    <linearGradient id="vJgloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".24"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="vJglow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="1.6" stdDeviation="1.4" flood-color="#1e1b4b" flood-opacity=".55"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#ffffff" flood-opacity=".25"/>
+    </filter>
+  </defs>
+  <rect x="1" y="1" width="62" height="62" rx="15" fill="url(#vJbase)"/>
+  <rect x="1.75" y="1.75" width="60.5" height="60.5" rx="14.3" fill="none" stroke="url(#vJrim)" stroke-width="1.5"/>
+  <path d="M5 16a11 11 0 0 1 11-11h32a11 11 0 0 1 11 11v8c-14 5-40 5-54 0Z" fill="url(#vJgloss)"/>
+  <g filter="url(#vJglow)">
+    <path d="M12 23.5 15.5 13h33L52 23.5Z" fill="url(#vJgold)"/>
+    <path d="M12 23.5a5 5 0 0 0 10 0 5 5 0 0 0 10 0 5 5 0 0 0 10 0 5 5 0 0 0 10 0" fill="url(#vJgold)"/>
+    <path d="M22 13v10.5M32 13v10.5M42 13v10.5" stroke="#6366f1" stroke-opacity=".45" stroke-width="1"/>
+    <path d="M15 31v19h34V31" fill="none" stroke="url(#vJgold)" stroke-width="3.6" stroke-linejoin="round"/>
+    <path d="M32 34.5C33.82 39.18 33.82 39.18 38.5 41C33.82 42.82 33.82 42.82 32 47.5C30.18 42.82 30.18 42.82 25.5 41C30.18 39.18 30.18 39.18 32 34.5Z" fill="#fff"/>
+  </g>
+</svg>

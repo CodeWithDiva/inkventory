@@ -1,0 +1,62 @@
+# Full stack: PostgreSQL + Redis + API + Celery worker + web UI.
+#   cp backend/.env.example backend/.env   (add ANTHROPIC_API_KEY)
+#   docker compose up --build
+# Open http://localhost:8080
+
+x-backend: &backend
+  build: ./backend
+  env_file: ./backend/.env
+  environment:
+    DATABASE_URL: postgresql+psycopg://catalogai:catalogai@db:5432/catalogai
+    REDIS_URL: redis://redis:6379/0
+    TASK_MODE: celery
+    STORAGE_DIR: /app/storage/files
+  volumes:
+    - storage:/app/storage
+  depends_on:
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_started
+  restart: unless-stopped
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: catalogai
+      POSTGRES_PASSWORD: catalogai
+      POSTGRES_DB: catalogai
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U catalogai"]
+      interval: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  api:
+    <<: *backend
+    ports:
+      - "8000:8000"
+
+  worker:
+    <<: *backend
+    # -B also runs the beat scheduler (scheduled store syncs). Run beat in only one worker.
+    command: celery -A app.tasks worker -B --loglevel=info --concurrency=2
+
+  web:
+    build: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  storage:
